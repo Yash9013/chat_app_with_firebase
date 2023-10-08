@@ -3,6 +3,8 @@ import 'package:chatappwithfirebase/presentation/authscreens/signup_screen.dart'
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../home_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -59,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     elevation: 10,
                     borderRadius: BorderRadius.circular(width * 0.011),
                     child: Container(
-                      height: height / 2.3,
+                      height: height / 2.1,
                       width: width,
                       padding: const EdgeInsets.symmetric(
                           vertical: 30, horizontal: 20),
@@ -143,7 +145,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                   backgroundColor: authContainerColor2,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10))),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                    PageRouteBuilder(
+                                      pageBuilder:
+                                          (context, animation, secondaryAnimation) =>
+                                      const HomeScreen(),
+                                      transitionsBuilder: (context, animation,
+                                          secondaryAnimation, child) =>
+                                          FadeTransition(
+                                            opacity: animation,
+                                            child: child,
+                                          ),
+                                    ));
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.all(10),
                                 child: Text(
@@ -174,7 +189,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: " Sign Up Now!",
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.of(context).push(PageRouteBuilder(
+                          Navigator.of(context).push(
+                              PageRouteBuilder(
                             pageBuilder:
                                 (context, animation, secondaryAnimation) =>
                                     const SignUpScreen(),
